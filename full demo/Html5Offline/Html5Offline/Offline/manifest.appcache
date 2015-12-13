@@ -1,0 +1,29 @@
+﻿CACHE MANIFEST
+# v4 2015-12-12
+# CACHE
+#images
+/favicon.ico
+/Resources/GitHub.png
+#javascript
+/Scripts/modernizr-2.6.2.js
+/Scripts/jquery-1.10.2.min.js
+/Scripts/IndexedDBShim.min.js
+/Scripts/IndexedDB/Linq2IndexedDB.js
+/Content/Views/Home/Index.css
+/Scripts/Views/Home/Index.js
+/Scripts/Views/Shared/ConnectionStatus.js
+/Scripts/Views/DatabaseHelpers/TodoDatabaseHelper.js
+/Scripts/bootstrap.js
+/Scripts/jquery.validate.js
+/Scripts/Views/DatabaseHelpers/TodoDatabaseHelper.js
+#css
+/Content/site.css
+/Content/Views/Home/Index.css
+/Content/bootstrap.css
+/Content/bootstrap.min.css
+NETWORK:
+*
+
+
+
+

@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+@section styles
+    {
+    @Styles.Render("~/Content/Views/Home/Index.css")
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="jumbotron" style="background-image:url(../../Resources/GitHub.png) ; background-size:cover"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 table-responsive">
+        <div id="todos">
+            <ul id="todoList" class="sidebar_menu"></ul>
+        </div>
+        <div class="clearfix">
+            <input type="button" class="btn btn-primary" value="Save" id="btnSave" />
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h4><b> enter new todo item </b></h4>
+        <form id="form" role="form">
+            
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" placeholder="enter title here.." id="txtTitle" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>description</label>
+                    <textarea placeholder="enter description here.." id="txtDescription" class="form-control"></textarea>
+                </div>
+                <div class="clearfix">
+                    <input type="button" class="btn btn-primary" value="Add" id="btnAddTodo" />
+                </div>
+            
+
+        </form>
+    </div>
+</div>
+<div class="row">
+    <input type="button" class="btn btn-warning" value="clear cached data" id="clearcache" style="float:right" />
+</div>
+@section Scripts
+    {
+    @*-------------------------- View scripts ---------------------------------------------*@
+    @Scripts.Render("~/Scripts/Views/Home/Index.js")
+    @Scripts.Render("~/Scripts/Views/Shared/ConnectionStatus.js")
+    @Scripts.Render("~/Scripts/Views/DatabaseHelpers/TodoDatabaseHelper.js")
+    @*--------------------------End View scripts ---------------------------------------------*@
+}
+

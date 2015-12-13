@@ -1,0 +1,24 @@
+Notes:
+
+Problem : api controller cannot be be found (cannot be accessed from ajax calls)
+Solution: change instruction order in the Global.asax.cs file
+
+        protected void Application_Start()
+        {
+        	//default order was (not working)
+            //AreaRegistration.RegisterAllAreas();
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            //I changed the order to be like this
+            AreaRegistration.RegisterAllAreas();
+            // This is where it "should" be
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            // The WebApi routes cannot be initialized here.
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+        }
