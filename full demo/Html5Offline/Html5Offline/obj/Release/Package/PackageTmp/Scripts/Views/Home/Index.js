@@ -4,12 +4,14 @@ $(function () {
 })
 
 var IndexModule = (function () {
+    var bool = false;
     function init() {
         syncDataAndGetTodoInformations();
         setOnBtnAddClickListener();
         setOnBtnSaveListener();
         cacheStatusEventListener();
         setOnClearCacheClickListener();
+        setOnBtnPushClickListener();
     }
 
     function setOnClearCacheClickListener() {
@@ -45,24 +47,51 @@ var IndexModule = (function () {
         }
     }
 
+    //function appendItem(id, title, description, isDone) {
+    //    var element = $("#todos #todoList");
+    //    if (!element) return;
+    //    var checkboxLine;
+    //    if (isDone)
+    //        checkboxLine = '<input type="checkbox" class="checkbox" checked id="' + id + '">';
+    //    else
+    //        checkboxLine = '<input type="checkbox" class="checkbox" id="' + id + '">';
+
+    //    var li = '<li class="treeview">';
+    //    li += '<label name="todoId" hidden>' + id + '</label>';
+    //    li += '<a href="#">' + checkboxLine + '<span class="title">' + title + '</span></a> <i class="fa fa-angle-left pull-right"></i></a>';
+
+    //    li += '<ul class="treeview-menu">' + '<li class+"description">' + description + '</li>' + '</ul>';
+    //    li += '</ul>';
+    //    element.append(li);
+    //}
+
+
     function appendItem(id, title, description, isDone) {
-        var element = $("#todos #todoList");
-        if (!element) return;
-        var checkboxLine;
-        if (isDone)
-            checkboxLine = '<input type="checkbox" class="checkbox" checked id="' + id + '">';
-        else
-            checkboxLine = '<input type="checkbox" class="checkbox" id="' + id + '">';
+        var leftRight = "";
+        if (bool) {
+            leftRight = " right ";
+        }
+        var element = $("#todos");
+        var titleBody;
+        var img;
+        if (!bool) {
+            titleBody = '<span class="direct-chat-name pull-left">' + title + '</span>';
+            img = '<img class="direct-chat-img" src="../../Resources/Mario-icon1.png" alt="message user image">'
+        }
+        else {
+            titleBody = '<span class="direct-chat-name pull-right">' + title + '</span>';
+            img = '<img class="direct-chat-img" src="../../Resources/Mario-icon2.png" alt="message user image">'
+        }
+        var title = '<div class="direct-chat-info clearfix" style="margin-top:10px">' +
+                       titleBody +
+                       '</div>';
+                      
 
-        var li = '<li class="treeview">';
-        li += '<label name="todoId" hidden>' + id + '</label>';
-        li += '<a href="#">' + checkboxLine + '<span class="title">' + title + '</span></a> <i class="fa fa-angle-left pull-right"></i></a>';
-
-        li += '<ul class="treeview-menu">' + '<li class+"description">' + description + '</li>' + '</ul>';
-        li += '</ul>';
-        element.append(li);
+        var body = '<div class="direct-chat-text">' + description + '</div>';
+        var box = '<div class="direct-chat-message' + leftRight + '">' + title + img + body + '</div>';
+        element.append(box);
+        bool = !bool;
     }
-
 
     function setOnBtnSaveListener() {
         $("#btnSave").click(function () {
@@ -88,6 +117,12 @@ var IndexModule = (function () {
         });
     }
 
+    function setOnBtnPushClickListener() {
+        $('#sync').click(function () {
+            window.TodoModule.syncServerDbFromLocalDb();
+        });
+    }
+
     function clearCache() {
         $.ajax({
             url: '../Cache/RemoveUser?username=' + getUsername(),
@@ -96,12 +131,12 @@ var IndexModule = (function () {
             success: function (data) {
                 //console.log("success -- " + data);
                 applicationCache.update();
-              
+
             },
             error: function (error) {
                 //console.log("error -- " + error);
                 applicationCache.update();
-                
+
             }
         });
     }

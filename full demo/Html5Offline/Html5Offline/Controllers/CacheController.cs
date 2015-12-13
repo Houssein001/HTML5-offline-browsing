@@ -46,8 +46,9 @@ namespace Html5Offline.Controllers
             Url.Content("~/Content/Views/Home/Index.css") + Environment.NewLine +
             Url.Content("~/Content/bootstrap.css") + Environment.NewLine +
             Url.Content("~/Content/bootstrap.min.css") + Environment.NewLine +
-            "FALLBACK:" + Environment.NewLine +
-            Url.Content("~/Views/Home/NoCache.cshtml") + Environment.NewLine;
+            Url.Content("~/Resources/GitHub.png") + Environment.NewLine +
+            Url.Content("~/Resources/Mario-icon1.png") + Environment.NewLine +
+            Url.Content("~/Resources/Mario-icon2.png") + Environment.NewLine;
 
             return Content(manifest, "text/cache-manifest");
         }
